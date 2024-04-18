@@ -2,6 +2,9 @@
 
 internal static class MetadataNames
 {
-    public const string SHOVEL = nameof(Shovel);
-    public const string OBSERVABLE_OBJECT = "CommunityToolkit.Mvvm.ComponentModel.ObservableObject";
+    public const string AppName = nameof(Shovel);
+    public const string Control = "Avalonia.Controls.Control";
+    public const string Window = "Avalonia.Controls.Window";
+    public const string UserControl = "Avalonia.Controls.UserControl";
+    public const string ObservableObject = "CommunityToolkit.Mvvm.ComponentModel.ObservableObject";
 }

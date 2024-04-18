@@ -97,8 +97,8 @@ public abstract class SourceGeneratorForDeclaredMember<TDeclarationSyntax> : IIn
         }
     }
 
-    private const string EXT = ".g.cs";
-    private const int MAX_FILE_LENGTH = 255;
+    private const string Ext = ".g.cs";
+    private const int MaxFileLength = 255;
 
     protected IEnumerable<TSymbol> GetAll<TSymbol>(IEnumerable<SyntaxNode> syntaxNodes)
         where TSymbol : ISymbol
@@ -135,19 +135,19 @@ public abstract class SourceGeneratorForDeclaredMember<TDeclarationSyntax> : IIn
 
     protected virtual string GenerateFilename(ISymbol symbol)
     {
-        var gn = $"{Format(symbol)}{EXT}";
+        var gn = $"{Format(symbol)}{Ext}";
         Log.Debug($"Generated Filename ({gn.Length}): {gn}\n");
         return gn;
 
         static string Format(ISymbol symbol) =>
-            string.Join("_", $"{symbol}".Split(InvalidFileNameChars))
-                .Truncate(MAX_FILE_LENGTH - EXT.Length);
+            string.Join("_", $"{symbol}".Split(s_invalidFileNameChars))
+                .Truncate(MaxFileLength - Ext.Length);
     }
 
     protected virtual SyntaxNode Node(TDeclarationSyntax node) => node;
 
     // ReSharper disable once StaticMemberInGenericType
-    private static readonly char[] InvalidFileNameChars =
+    private static readonly char[] s_invalidFileNameChars =
     [
         '\"',
         '<',

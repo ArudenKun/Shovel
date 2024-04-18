@@ -3,8 +3,8 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Shovel.SourceGenerators.Attributes;
-using Shovel.SourceGenerators.Extensions;
 using Shovel.SourceGenerators.Utilities;
+using Shovel.SourceGenerators.Extensions;
 
 namespace Shovel.SourceGenerators.Generators;
 
@@ -18,9 +18,9 @@ internal sealed class DependencyInjectionGenerator
         AnalyzerConfigOptions options
     )
     {
-        var observableObject = compilation.GetTypeByMetadataName(MetadataNames.OBSERVABLE_OBJECT);
+        var observableObject = compilation.GetTypeByMetadataName(MetadataNames.ObservableObject);
 
-        var viewModelSymbols = GetAll<INamedTypeSymbol>(nodes)
+        var viewModels = GetAll<INamedTypeSymbol>(nodes)
             .Where(x => !x.IsAbstract)
             .Where(x => x.Name.EndsWith("ViewModel"))
             .Where(x => x.IsOfBaseType(observableObject))
@@ -34,67 +34,37 @@ internal sealed class DependencyInjectionGenerator
         source.Line();
 
         source.NamespaceBlockBrace(
-            $"{MetadataNames.SHOVEL}.Core",
+            $"{MetadataNames.AppName}.Core",
             () =>
             {
                 source.Line("public static partial class ServiceCollectionExtensions");
                 source.BlockBrace(() =>
                 {
-                    source.Line(
-                        "static partial void AddViewsAndViewModels(IServiceCollection services)"
-                    );
+                    source.Line("static partial void AddViewModels(IServiceCollection services)");
                     source.BlockBrace(() =>
                     {
-                        foreach (var viewModelSymbol in viewModelSymbols)
+                        foreach (var viewModel in viewModels)
                         {
-                            var viewName = GetViewName(viewModelSymbol);
-                            var viewSymbol = compilation.GetTypeByMetadataName(viewName);
-
-                            if (viewSymbol is null)
-                            {
-                                continue;
-                            }
-
                             source.Line(
-                                viewModelSymbol.HasAttribute(nameof(SingletonAttribute))
-                                    ? $"services.AddSingleton<{viewModelSymbol.ToFullDisplayString()}>();"
-                                    : $"services.AddTransient<{viewModelSymbol.ToFullDisplayString()}>();"
+                                viewModel.HasAttribute(nameof(SingletonAttribute))
+                                    ? $"services.AddSingleton<{viewModel.ToFullDisplayString()}>();"
+                                    : $"services.AddTransient<{viewModel.ToFullDisplayString()}>();"
                             );
 
-                            if (viewModelSymbol.BaseType is { } baseType)
+                            if (viewModel.BaseType is { } baseType)
                             {
                                 source.Line(
-                                    viewModelSymbol.HasAttribute(nameof(SingletonAttribute))
-                                        ? $"services.AddSingleton<{baseType.ToFullDisplayString()}>(sp => sp.GetRequiredService<{viewModelSymbol.ToFullDisplayString()}>());"
-                                        : $"services.AddTransient<{baseType.ToFullDisplayString()}>(sp => sp.GetRequiredService<{viewModelSymbol.ToFullDisplayString()}>());"
+                                    viewModel.HasAttribute(nameof(SingletonAttribute))
+                                        ? $"services.AddSingleton<{baseType.ToFullDisplayString()}>(sp => sp.GetRequiredService<{viewModel.ToFullDisplayString()}>());"
+                                        : $"services.AddTransient<{baseType.ToFullDisplayString()}>(sp => sp.GetRequiredService<{viewModel.ToFullDisplayString()}>());"
                                 );
                             }
-
-                            source.Line(
-                                viewModelSymbol.HasAttribute(nameof(SingletonAttribute))
-                                    ? $"services.AddSingleton<{viewSymbol.ToFullDisplayString()}>();"
-                                    : $"services.AddTransient<{viewSymbol.ToFullDisplayString()}>();"
-                            );
                         }
                     });
                 });
             }
         );
 
-        return ($"{MetadataNames.SHOVEL}.Core.AddViewModels.g.cs", source.ToString());
-    }
-
-    private static string GetViewName(ISymbol symbol)
-    {
-        string[] words = ["Windows", "Page", "Dialog"];
-        var name = symbol.ToDisplayString();
-
-        if (!words.Any(word => name.Contains(word)))
-        {
-            return name.Replace("ViewModel", "View");
-        }
-
-        name = name.Replace(".ViewModels.", ".Views.");
-        return name.Remove(name.IndexOf("ViewModel", StringComparison.Ordinal));
+        return ($"{MetadataNames.AppName}.Core.AddViewModels.g.cs", source.ToString());
     }
 }

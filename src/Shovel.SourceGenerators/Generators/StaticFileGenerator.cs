@@ -7,22 +7,22 @@ namespace Shovel.SourceGenerators.Generators;
 [Generator]
 internal sealed class StaticFileGenerator : IIncrementalGenerator
 {
-    private const string USINGS_TEXT = """
+    private const string UsingsText = """
         global using System;
         """;
 
-    private const string SERVICE_COLLECTION_EXTENSIONS_TEXT = $$"""
+    private const string ServiceCollectionExtensionsText = $$"""
         using Microsoft.Extensions.DependencyInjection;
 
-        namespace {{MetadataNames.SHOVEL}}.Core;
+        namespace {{MetadataNames.AppName}}.Core;
 
         public static partial class ServiceCollectionExtensions
         {
-            static partial void AddViewsAndViewModels(IServiceCollection services);
+            static partial void AddViewModels(IServiceCollection services);
 
             public static IServiceCollection AddCore(this IServiceCollection services)
             {
-                AddViewsAndViewModels(services);
+                AddViewModels(services);
                 return services;
             }
         }
@@ -32,14 +32,18 @@ internal sealed class StaticFileGenerator : IIncrementalGenerator
     {
         context.RegisterPostInitializationOutput(ctx =>
         {
-            ctx.AddSource($"{MetadataNames.SHOVEL}.Core.Usings.g.cs", USINGS_TEXT);
+            ctx.AddSource($"{MetadataNames.AppName}.Core.Usings.g.cs", UsingsText);
             ctx.AddSource(
-                $"{MetadataNames.SHOVEL}.Core.ServiceCollectionExtensions.g.cs",
-                SERVICE_COLLECTION_EXTENSIONS_TEXT
+                $"{MetadataNames.AppName}.Core.ServiceCollectionExtensions.g.cs",
+                ServiceCollectionExtensionsText
             );
             ctx.AddSource(
                 FileName(nameof(SingletonAttribute)),
                 Copy.ShovelSourceGeneratorsAttributesSingletonAttribute
+            );
+            ctx.AddSource(
+                FileName(nameof(StaticViewLocatorAttribute)),
+                Copy.ShovelSourceGeneratorsAttributesStaticViewLocatorAttribute
             );
             ctx.AddSource(
                 FileName(nameof(IgnoreAttribute)),
@@ -52,5 +56,5 @@ internal sealed class StaticFileGenerator : IIncrementalGenerator
         attribute.Replace("Attribute", "");
 
     private static string FileName(string attributeName) =>
-        $"{MetadataNames.SHOVEL}.Core.Attributes.{ParseAttributeName(attributeName)}.g.cs";
+        $"{MetadataNames.AppName}.Core.Attributes.{ParseAttributeName(attributeName)}.g.cs";
 }

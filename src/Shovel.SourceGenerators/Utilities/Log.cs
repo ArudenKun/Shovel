@@ -75,7 +75,7 @@ internal static class Log
         Stopwatch = Stopwatch.StartNew();
         LogFile =
 #pragma warning disable RS1035
-            $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}/{nameof(Shovel)}/SourceGenerators.log";
+            $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}/{MetadataNames.AppName}/SourceGenerators.log";
 #pragma warning restore RS1035
 
         TryDeleteLogFile();

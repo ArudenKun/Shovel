@@ -15,6 +15,7 @@ public abstract class SourceGeneratorForDeclaredMemberWithAttribute<TAttribute, 
     where TDeclarationSyntax : MemberDeclarationSyntax
 {
     protected static readonly string AttributeType = typeof(TAttribute).Name;
+    // ReSharper disable once StaticMemberInGenericType
     protected static readonly string AttributeName = Regex.Replace(
         AttributeType,
         "Attribute$",
@@ -40,8 +41,8 @@ public abstract class SourceGeneratorForDeclaredMemberWithAttribute<TAttribute, 
             .Combine(context.AnalyzerConfigOptionsProvider);
         context.RegisterImplementationSourceOutput(
             compilationProvider,
-            (context, provider) =>
-                OnExecute(context, provider.Left.Left, provider.Left.Right, provider.Right)
+            (sourceProductionContext, provider) =>
+                OnExecute(sourceProductionContext, provider.Left.Left, provider.Left.Right, provider.Right)
         );
 
         static bool IsSyntaxTarget(SyntaxNode node, CancellationToken _)
@@ -153,23 +154,24 @@ public abstract class SourceGeneratorForDeclaredMemberWithAttribute<TAttribute, 
             new() { Title = "Internal Error", Message = e.Message };
     }
 
-    private const string EXT = ".g.cs";
-    private const int MAX_FILE_LENGTH = 255;
+    private const string Ext = ".g.cs";
+    private const int MaxFileLength = 255;
 
     protected virtual string GenerateFilename(ISymbol symbol)
     {
-        var gn = $"{Format(symbol)}{EXT}";
+        var gn = $"{Format(symbol)}{Ext}";
         Log.Debug($"Generated Filename ({gn.Length}): {gn}\n");
         return gn;
 
         static string Format(ISymbol symbol) =>
-            string.Join("_", $"{symbol}".Split(InvalidFileNameChars))
-                .Truncate(MAX_FILE_LENGTH - EXT.Length);
+            string.Join("_", $"{symbol}".Split(s_invalidFileNameChars))
+                .Truncate(MaxFileLength - Ext.Length);
     }
 
     protected virtual SyntaxNode Node(TDeclarationSyntax node) => node;
 
-    private static readonly char[] InvalidFileNameChars =
+    // ReSharper disable once StaticMemberInGenericType
+    private static readonly char[] s_invalidFileNameChars =
     [
         '\"',
         '<',
