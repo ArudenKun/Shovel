@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shovel", "src\Shovel\Shovel.csproj", "{636DFB20-FE9A-4743-B9DA-77762DFF6C03}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{675C4F2B-F944-4524-9306-F85013A109B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shovel.SourceGenerators", "src\Shovel.SourceGenerators\Shovel.SourceGenerators.csproj", "{36A6C42B-B11E-420F-815D-933A4BE9CC2C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{636DFB20-FE9A-4743-B9DA-77762DFF6C03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{636DFB20-FE9A-4743-B9DA-77762DFF6C03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{636DFB20-FE9A-4743-B9DA-77762DFF6C03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{636DFB20-FE9A-4743-B9DA-77762DFF6C03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36A6C42B-B11E-420F-815D-933A4BE9CC2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36A6C42B-B11E-420F-815D-933A4BE9CC2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36A6C42B-B11E-420F-815D-933A4BE9CC2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36A6C42B-B11E-420F-815D-933A4BE9CC2C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{636DFB20-FE9A-4743-B9DA-77762DFF6C03} = {675C4F2B-F944-4524-9306-F85013A109B3}
+		{36A6C42B-B11E-420F-815D-933A4BE9CC2C} = {675C4F2B-F944-4524-9306-F85013A109B3}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {117EAF91-0D88-4798-9F17-F1372D26E9FF}
+	EndGlobalSection
+EndGlobal
