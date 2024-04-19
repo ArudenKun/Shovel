@@ -33,44 +33,25 @@ internal sealed class StaticViewLocatorGenerator
         source.Line("using System;");
         source.Line("using System.Collections.Generic;");
         source.Line("using Avalonia.Controls;");
-        // source.Line("using HanumanInstitute.MvvmDialogs.Avalonia;");
+        source.Line("using HanumanInstitute.MvvmDialogs.Avalonia;");
         source.Line();
 
-        source.PartialTypeBlockBrace(() =>
+        source.PartialTypeBlockBrace("StrongViewLocator", () =>
         {
-            // source.Constructor(() =>
-            // {
-            //     foreach (var viewModelSymbol in viewModelSymbols)
-            //     {
-            //         var viewName = GetViewName(viewModelSymbol);
-            //         var viewSymbol = compilation.GetTypeByMetadataName(viewName);
-            //         
-            //         if (viewSymbol is null)
-            //         {
-            //             continue;
-            //         }
-            //         
-            //         source.Line($"Register<{viewModelSymbol.ToFullDisplayString()}, {viewSymbol.ToFullDisplayString()}>();");
-            //     }
-            // });
-            source.Line(
-                "public static Dictionary<Type, Func<Control>> Registrations { get; } = new()"
-            );
-            source.BlockDecl(() =>
+            source.Constructor(() =>
             {
                 foreach (var viewModelSymbol in viewModelSymbols)
                 {
                     var viewName = GetViewName(viewModelSymbol);
-                    var view = compilation.GetTypeByMetadataName(viewName);
+                    var viewSymbol = compilation.GetTypeByMetadataName(viewName);
 
-                    if (view is null)
+                    if (viewSymbol is null)
                     {
                         continue;
                     }
 
                     source.Line(
-                        $"[typeof({viewModelSymbol.ToFullDisplayString()})] = () => new {view.ToFullDisplayString()}(),"
-                    );
+                        $"Register<{viewModelSymbol.ToFullDisplayString()}, {viewSymbol.ToFullDisplayString()}>();");
                 }
             });
         });

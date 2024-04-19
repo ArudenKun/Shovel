@@ -1,8 +1,16 @@
-﻿namespace Shovel.ViewModels;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
-public partial class MainWindowViewModel : ViewModelBase
+namespace Shovel.ViewModels;
+
+public sealed partial class MainWindowViewModel : ViewModelBase
 {
-#pragma warning disable CA1822 // Mark members as static
-    public string Greeting => "Welcome to Avalonia!";
-#pragma warning restore CA1822 // Mark members as static
+    [ObservableProperty]
+    private bool _isLoading;
+    
+    [RelayCommand]
+    private void Change()
+    {
+        IsLoading = !IsLoading;
+    }
 }
