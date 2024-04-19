@@ -2,6 +2,12 @@
 
 namespace Shovel.ViewModels;
 
-public class ViewModelBase : ObservableObject
+public abstract partial class ViewModelBase : ObservableObject
 {
+    protected ViewModelBase()
+    {
+        OnLoaded();
+    }
+
+    partial void OnLoaded();
 }

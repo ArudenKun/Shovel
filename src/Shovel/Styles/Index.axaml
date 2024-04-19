@@ -2,4 +2,12 @@
     <StyleInclude Source="Controls/Hyperlink.axaml" />
     <StyleInclude Source="Controls/BusyArea.axaml" />
     <StyleInclude Source="Controls/Loading.axaml" />
+    <StyleInclude Source="Controls/CircleProgressBar.axaml" />
+    <Styles.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceInclude Source="Controls/Stepper.axaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Styles.Resources>
 </Styles>
