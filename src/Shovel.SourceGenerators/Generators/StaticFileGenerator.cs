@@ -49,10 +49,6 @@ internal sealed class StaticFileGenerator : IIncrementalGenerator
                 FileName(nameof(IgnoreAttribute)),
                 Copy.ShovelSourceGeneratorsAttributesIgnoreAttribute
             );
-            ctx.AddSource(
-                FileName(nameof(ActivatableAttribute)),
-                Copy.ShovelSourceGeneratorsAttributesActivatableAttribute
-            );
         });
     }
 
