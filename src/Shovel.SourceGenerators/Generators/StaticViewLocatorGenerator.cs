@@ -1,8 +1,8 @@
 ﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Shovel.SourceGenerators.Attributes;
-using Shovel.SourceGenerators.Utilities;
 using Shovel.SourceGenerators.Extensions;
+using Shovel.SourceGenerators.Utilities;
 
 namespace Shovel.SourceGenerators.Generators;
 
@@ -36,39 +36,45 @@ internal sealed class StaticViewLocatorGenerator
         source.Line("using HanumanInstitute.MvvmDialogs.Avalonia;");
         source.Line();
 
-        source.PartialTypeBlockBrace("StrongViewLocator", () =>
-        {
-            source.Constructor(() =>
+        source.PartialTypeBlockBrace(
+            "StrongViewLocator",
+            () =>
             {
-                foreach (var viewModelSymbol in viewModelSymbols)
+                source.Constructor(() =>
                 {
-                    var viewName = GetViewName(viewModelSymbol);
-                    var viewSymbol = compilation.GetTypeByMetadataName(viewName);
-
-                    if (viewSymbol is null)
+                    foreach (var viewModelSymbol in viewModelSymbols)
                     {
-                        continue;
-                    }
+                        var viewSymbol = GetView(viewModelSymbol, compilation);
 
-                    source.Line(
-                        $"Register<{viewModelSymbol.ToFullDisplayString()}, {viewSymbol.ToFullDisplayString()}>();");
-                }
-            });
-        });
+                        if (viewSymbol is null)
+                        {
+                            continue;
+                        }
+
+                        source.Line(
+                            $"Register<{viewModelSymbol.ToFullDisplayString()}, {viewSymbol.ToFullDisplayString()}>();"
+                        );
+                    }
+                });
+            }
+        );
 
         return (source.ToString(), null);
     }
 
-    private static readonly string[] s_words = ["Window", "Dialog"];
-
-    private static string GetViewName(ISymbol symbol)
+    private static INamedTypeSymbol GetView(ISymbol symbol, Compilation compilation)
     {
-        var name = symbol.ToDisplayString();
+        var viewName = symbol.ToDisplayString().Replace("ViewModel", "View");
 
-        if (!s_words.Any(x => name.Contains(x)))
-            return name.Replace("ViewModel", "View");
+        var viewSymbol = compilation.GetTypeByMetadataName(viewName);
 
-        name = name.Replace(".ViewModels.", ".Views.");
-        return name.Remove(name.IndexOf("ViewModel", StringComparison.Ordinal));
+        if (viewSymbol is not null)
+        {
+            return viewSymbol;
+        }
+
+        viewName = symbol.ToDisplayString().Replace(".ViewModels.", ".Views.");
+        viewName = viewName.Remove(viewName.IndexOf("ViewModel", StringComparison.Ordinal));
+        return compilation.GetTypeByMetadataName(viewName);
     }
 }

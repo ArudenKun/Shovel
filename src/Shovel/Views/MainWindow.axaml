@@ -21,14 +21,6 @@
         Height="500"
         HorizontalAlignment="Center"
         VerticalAlignment="Center">
-        <controls:Stepper AlternativeStyle="True" Index="1">
-            <controls:Stepper.Steps>
-                <objectModel:ObservableCollection x:TypeArguments="system:String">
-                    <system:String>Step One</system:String>
-                    <system:String>Step Two</system:String>
-                    <system:String>Step Three</system:String>
-                </objectModel:ObservableCollection>
-            </controls:Stepper.Steps>
-        </controls:Stepper>
+        <ContentControl Content="{Binding Content}" />
     </StackPanel>
 </Window>

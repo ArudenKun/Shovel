@@ -2,6 +2,12 @@
   "version": 1,
   "dependencies": {
     "net8.0": {
+      "AutoInterface": {
+        "type": "Direct",
+        "requested": "[2.3.0, )",
+        "resolved": "2.3.0",
+        "contentHash": "AF5a9oZPj6BKVaoXXBGkA5/H7ZBawO9IRlBpYwVgw0b4vFxk4ddPcNThQP+rRtSH0arilVdZ2PaBHD7N+bMjMQ=="
+      },
       "Avalonia": {
         "type": "Direct",
         "requested": "[11.0.10, )",

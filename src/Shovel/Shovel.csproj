@@ -21,6 +21,10 @@
     </ItemGroup>
 
     <ItemGroup>
+        <PackageReference Include="AutoInterface" Version="2.3.0">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
         <PackageReference Include="Avalonia" Version="11.0.10"/>
         <PackageReference Include="Avalonia.Desktop" Version="11.0.10"/>
         <PackageReference Include="Avalonia.Fonts.Inter" Version="11.0.10"/>
@@ -41,5 +45,11 @@
     <ItemGroup>
         <ProjectReference Include="..\Shovel.Core\Shovel.Core.csproj" />
         <ProjectReference Include="..\Shovel.SourceGenerators\Shovel.SourceGenerators.csproj" OutputItemType="analyzer" ReferenceOutputAssembly="false" PrivateAssets="all"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Helpers\" />
+      <Folder Include="Models\" />
+      <Folder Include="Services\" />
     </ItemGroup>
 </Project>
