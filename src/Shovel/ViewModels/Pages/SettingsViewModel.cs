@@ -3,12 +3,12 @@ using Shovel.ViewModels.Abstractions;
 
 namespace Shovel.ViewModels.Pages;
 
-public sealed class SettingsViewModel : PageViewModelBase, IViewLoaded
+public sealed class SettingsViewModel : PageViewModelBase
 {
     public SettingsViewModel(IDialogService dialogService)
         : base(dialogService) { }
 
-    public void OnLoaded()
+    protected override void HandleLoaded()
     {
         Console.WriteLine("LOADED");
     }
