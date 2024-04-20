@@ -9,6 +9,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{664CA60F-32B1-4C3F-9DFE-7D927FE7C1EE}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		build-win-dev.bat = build-win-dev.bat
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shovel.Core", "src\Shovel.Core\Shovel.Core.csproj", "{747F9F37-4A90-4032-84E3-4B53DAB914B3}"

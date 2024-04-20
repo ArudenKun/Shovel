@@ -31,16 +31,11 @@ public abstract partial class ViewModelBase : ObservableValidator, IViewLoaded, 
 
     protected virtual void HandleLoaded() { }
 
-    [UnconditionalSuppressMessage(
-        "Trimming",
-        "IL2026:Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code",
-        Justification = "<Pending>"
-    )]
     public void OnClosed()
     {
         Messenger.UnregisterAll(this);
-        HandleOnClosed();
+        HandleClosed();
     }
 
-    protected virtual void HandleOnClosed() { }
+    protected virtual void HandleClosed() { }
 }

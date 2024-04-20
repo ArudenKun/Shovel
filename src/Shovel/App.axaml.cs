@@ -38,10 +38,10 @@ public sealed class App : Application
         var services = new ServiceCollection();
 
         services.AddCore();
-        services.AddSingleton<IDialogService>(sp =>
-            new DialogService(new DialogManager((IViewLocator)DataTemplates.First(),
-                    new DialogFactory().AddFluent()),
-                sp.GetRequiredService));
+        services.AddSingleton<IDialogService>(sp => new DialogService(
+            new DialogManager((IViewLocator)DataTemplates.First(), new DialogFactory().AddFluent()),
+            sp.GetRequiredService
+        ));
 
         var serviceProvider = services.BuildServiceProvider();
         Ioc.Default.ConfigureServices(serviceProvider);

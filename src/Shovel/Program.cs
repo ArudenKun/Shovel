@@ -1,5 +1,4 @@
 ﻿using Avalonia;
-using Velopack;
 
 namespace Shovel;
 
@@ -11,7 +10,6 @@ public static class Program
     [STAThread]
     public static void Main(string[] args)
     {
-        VelopackApp.Build().Run();
         BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
     }
 
