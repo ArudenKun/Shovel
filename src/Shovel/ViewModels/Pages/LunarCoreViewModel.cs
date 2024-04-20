@@ -3,7 +3,7 @@ using Shovel.ViewModels.Abstractions;
 
 namespace Shovel.ViewModels.Pages;
 
-public class LunarCoreViewModel : PageViewModelBase
+public sealed class LunarCoreViewModel : ViewModelBase
 {
     public LunarCoreViewModel(IDialogService dialogService)
         : base(dialogService) { }

@@ -36,7 +36,7 @@ if not defined version (
 
 echo.
 echo Compiling %appName%
-dotnet publish %proj% -c Release -o publish
+dotnet publish %proj% -c Release -o publish -p:PublishReadyToRun=true
 
 echo.
 echo Building Velopack Release v%version%

@@ -13,7 +13,7 @@ using Avalonia.Markup.Xaml.MarkupExtensions;
 using Avalonia.Media;
 using Avalonia.Threading;
 using DependencyPropertyGenerator;
-using FluentIcons.Common;
+using FluentIcons.Avalonia.Fluent;
 
 namespace Shovel.Controls;
 

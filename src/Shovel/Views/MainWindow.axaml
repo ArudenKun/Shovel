@@ -2,6 +2,7 @@
     x:Class="Shovel.Views.MainWindow"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:behaviors="using:Shovel.Behaviors"
     xmlns:controls="clr-namespace:Shovel.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -10,17 +11,21 @@
     xmlns:ui="using:FluentAvalonia.UI.Controls"
     xmlns:vm="using:Shovel.ViewModels"
     Title="Shovel"
+    MinWidth="1280"
+    MinHeight="720"
     d:DesignHeight="450"
     d:DesignWidth="800"
     x:DataType="vm:MainWindowViewModel"
-    Icon="/Assets/avalonia-logo.ico"
+    Icon="/Assets/shovel.ico"
+    WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
-
-    <StackPanel
-        Width="500"
-        Height="500"
-        HorizontalAlignment="Center"
-        VerticalAlignment="Center">
-        <ContentControl Content="{Binding Content}" />
-    </StackPanel>
+    <ui:NavigationView
+        FooterMenuItemsSource="{Binding Footers, Mode=OneTime}"
+        IsBackButtonVisible="False"
+        IsSettingsVisible="False"
+        MenuItemsSource="{Binding Menus, Mode=OneWay}"
+        PaneTitle="Menu"
+        SelectedItem="{Binding SelectedPage, Mode=TwoWay}">
+        <ui:Frame NavigationPageFactory="{Binding NavigationPageFactory}" SourcePageType="{Binding SelectedPageType}" />
+    </ui:NavigationView>
 </Window>

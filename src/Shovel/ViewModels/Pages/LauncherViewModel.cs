@@ -3,7 +3,7 @@ using Shovel.ViewModels.Abstractions;
 
 namespace Shovel.ViewModels.Pages;
 
-public class LauncherViewModel : PageViewModelBase
+public sealed class LauncherViewModel : ViewModelBase
 {
     public LauncherViewModel(IDialogService dialogService)
         : base(dialogService) { }
