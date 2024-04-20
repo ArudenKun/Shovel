@@ -6,8 +6,9 @@
         <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
         <ApplicationManifest>app.manifest</ApplicationManifest>
         <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+        <Version>0.1.0</Version>
         <!--        Publish Options-->
-        <PublishTrimmed>true</PublishTrimmed>
+        <PublishAot>true</PublishAot>
         <SelfContained>true</SelfContained>
         <!--        Other Options-->
         <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
@@ -22,8 +23,8 @@
 
     <ItemGroup>
         <PackageReference Include="AutoInterface" Version="2.3.0">
-          <PrivateAssets>all</PrivateAssets>
-          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="Avalonia" Version="11.0.10"/>
         <PackageReference Include="Avalonia.Desktop" Version="11.0.10"/>
@@ -32,24 +33,26 @@
         <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.10"/>
         <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2"/>
         <PackageReference Include="DependencyPropertyGenerator" Version="1.4.0">
-          <PrivateAssets>all</PrivateAssets>
-          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="FluentAvalonia.ProgressRing" Version="1.69.2" />
-        <PackageReference Include="FluentAvaloniaUI" Version="2.0.5" />
-        <PackageReference Include="FluentIcons.Avalonia.Fluent" Version="1.1.234" />
-        <PackageReference Include="HanumanInstitute.MvvmDialogs.Avalonia.Fluent" Version="2.1.0" />
-        <PackageReference Include="Velopack" Version="0.0.359" />
+        <PackageReference Include="FluentAvalonia.ProgressRing" Version="1.69.2"/>
+        <PackageReference Include="FluentAvaloniaUI" Version="2.0.5"/>
+        <PackageReference Include="FluentIcons.Avalonia.Fluent" Version="1.1.234"/>
+        <PackageReference Include="HanumanInstitute.MvvmDialogs.Avalonia.Fluent" Version="2.1.0"/>
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Shovel.Core\Shovel.Core.csproj" />
+        <TrimmerRootAssembly Include="Velopack"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Shovel.Core\Shovel.Core.csproj"/>
         <ProjectReference Include="..\Shovel.SourceGenerators\Shovel.SourceGenerators.csproj" OutputItemType="analyzer" ReferenceOutputAssembly="false" PrivateAssets="all"/>
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Helpers\" />
-      <Folder Include="Models\" />
-      <Folder Include="Services\" />
+        <Folder Include="Helpers\"/>
+        <Folder Include="Models\"/>
     </ItemGroup>
 </Project>
