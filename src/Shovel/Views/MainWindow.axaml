@@ -11,6 +11,8 @@
     xmlns:ui="using:FluentAvalonia.UI.Controls"
     xmlns:vm="using:Shovel.ViewModels"
     Title="Shovel"
+    Width="1280"
+    Height="720"
     MinWidth="1280"
     MinHeight="720"
     d:DesignHeight="450"
@@ -22,10 +24,19 @@
     <ui:NavigationView
         FooterMenuItemsSource="{Binding Footers, Mode=OneTime}"
         IsBackButtonVisible="False"
+        IsPaneToggleButtonVisible="False"
         IsSettingsVisible="False"
         MenuItemsSource="{Binding Menus, Mode=OneWay}"
-        PaneTitle="Menu"
         SelectedItem="{Binding SelectedPage, Mode=TwoWay}">
-        <ui:Frame NavigationPageFactory="{Binding NavigationPageFactory}" SourcePageType="{Binding SelectedPageType}" />
+        <ui:NavigationView.PaneHeader>
+            <Image
+                Width="100"
+                Height="100"
+                Margin="0,10,0,10"
+                Source="/Assets/shovel.png" />
+        </ui:NavigationView.PaneHeader>
+        <Panel Margin="20">
+            <ui:Frame NavigationPageFactory="{Binding NavigationPageFactory}" SourcePageType="{Binding SelectedPage.Tag}" />
+        </Panel>
     </ui:NavigationView>
 </Window>

@@ -56,6 +56,16 @@
           "Avalonia": "11.0.10"
         }
       },
+      "Avalonia.Markup.Xaml.Loader": {
+        "type": "Direct",
+        "requested": "[11.0.10, )",
+        "resolved": "11.0.10",
+        "contentHash": "jgETjvSGfAaSV8pkyn9m/k+8yxzam1nGy9Vrn1o8asch+HD+v+4LxkCZaZKHGhDM49tynBU8tPf6dEbgqNT8Gg==",
+        "dependencies": {
+          "Avalonia": "11.0.10",
+          "System.Reflection.Emit": "4.3.0"
+        }
+      },
       "Avalonia.Xaml.Behaviors": {
         "type": "Direct",
         "requested": "[11.0.10.6, )",
@@ -129,6 +139,18 @@
           "HanumanInstitute.MvvmDialogs": "2.1.0",
           "HanumanInstitute.MvvmDialogs.Avalonia": "2.1.0"
         }
+      },
+      "HotAvalonia": {
+        "type": "Direct",
+        "requested": "[1.1.0, )",
+        "resolved": "1.1.0",
+        "contentHash": "QK5USOHDo5118v8bhBHAKsoMfa6fZBBfhUSMQou0sydgGP3B+0QLxF+ElouuupoYpt4xWw4+bI4STWh9lzI2kg=="
+      },
+      "HotAvalonia.Extensions": {
+        "type": "Direct",
+        "requested": "[1.1.0, )",
+        "resolved": "1.1.0",
+        "contentHash": "YzqsPORleZhAxpTwm1GlheRWRsOZo8YYQbrxU4CGzL8V+boQk9EJ7Tu8LmT/jHNZ+b+Xn00PkNLnV+T5ywxfBw=="
       },
       "Microsoft.NET.ILLink.Tasks": {
         "type": "Direct",

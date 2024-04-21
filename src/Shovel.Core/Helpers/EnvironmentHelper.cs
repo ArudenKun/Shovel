@@ -33,7 +33,7 @@ public static class EnvironmentHelper
     /// Indicates whether the current application should save its data in the AppDirectory
     /// </summary>
     public static bool IsPortable => Directory.Exists(GetPortablePath());
-    
+
     /// <summary>
     /// Gets or sets the <see cref="T:System.Globalization.CultureInfo" /> object that represents the culture used by the current thread and task-based asynchronous operations.
     /// </summary>
@@ -59,6 +59,7 @@ public static class EnvironmentHelper
             .JoinPath(AppFriendlyName);
 
     public static void OpenUrl(Uri uri) => OpenUrl(uri.ToString());
+
     public static void OpenUrl(string url)
     {
         switch (OSHelper.GetOSVersion())

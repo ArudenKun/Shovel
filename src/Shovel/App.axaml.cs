@@ -8,6 +8,7 @@ using CommunityToolkit.Mvvm.DependencyInjection;
 using FluentAvalonia.UI.Controls;
 using HanumanInstitute.MvvmDialogs;
 using HanumanInstitute.MvvmDialogs.Avalonia;
+using HotAvalonia;
 using Microsoft.Extensions.DependencyInjection;
 using Shovel.Core;
 using Shovel.Services;
@@ -19,20 +20,23 @@ namespace Shovel;
 
 public sealed class App : Application
 {
+    private IDialogService _dialogService = null!;
+
     public override void Initialize()
     {
+        this.EnableHotReload();
         AvaloniaXamlLoader.Load(this);
+        _dialogService = BuildServices();
     }
 
     public override void OnFrameworkInitializationCompleted()
     {
-        var dialogService = BuildServices();
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime)
         {
             // Line below is needed to remove Avalonia data validation.
             // Without this line you will get duplicate validations from both Avalonia and CT
             BindingPlugins.DataValidators.RemoveAt(0);
-            dialogService.Show(null, dialogService.CreateViewModel<MainWindowViewModel>());
+            _dialogService.Show(null, _dialogService.CreateViewModel<MainWindowViewModel>());
         }
 
         base.OnFrameworkInitializationCompleted();

@@ -1,6 +1,6 @@
 using Avalonia.Controls;
 
-namespace Shovel;
+namespace Shovel.Views.Pages;
 
 public partial class EnvironmentView : UserControl
 {

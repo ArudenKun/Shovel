@@ -1,31 +1,29 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{FDF64D23-0E2B-4457-AB37-0940F0467366}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shovel", "src\Shovel\Shovel.csproj", "{3B9E9EDC-424C-4EDB-9606-1B33DD84B3A8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shovel", "src\Shovel\Shovel.csproj", "{3B9E9EDC-424C-4EDB-9606-1B33DD84B3A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shovel.SourceGenerators", "src\Shovel.SourceGenerators\Shovel.SourceGenerators.csproj", "{1B9579F3-19FD-4C7B-B0B6-839A345750B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shovel.SourceGenerators", "src\Shovel.SourceGenerators\Shovel.SourceGenerators.csproj", "{1B9579F3-19FD-4C7B-B0B6-839A345750B0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{664CA60F-32B1-4C3F-9DFE-7D927FE7C1EE}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		.github\workflows\build-dev.yml = .github\workflows\build-dev.yml
 		build-win-dev.bat = build-win-dev.bat
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shovel.Core", "src\Shovel.Core\Shovel.Core.csproj", "{747F9F37-4A90-4032-84E3-4B53DAB914B3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shovel.Core", "src\Shovel.Core\Shovel.Core.csproj", "{747F9F37-4A90-4032-84E3-4B53DAB914B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shovel.Cli", "src\Shovel.Cli\Shovel.Cli.csproj", "{1DF6A415-DA12-4187-AD2B-CD94C86585A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shovel.Cli", "src\Shovel.Cli\Shovel.Cli.csproj", "{1DF6A415-DA12-4187-AD2B-CD94C86585A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{3B9E9EDC-424C-4EDB-9606-1B33DD84B3A8} = {FDF64D23-0E2B-4457-AB37-0940F0467366}
-		{1B9579F3-19FD-4C7B-B0B6-839A345750B0} = {FDF64D23-0E2B-4457-AB37-0940F0467366}
-		{747F9F37-4A90-4032-84E3-4B53DAB914B3} = {FDF64D23-0E2B-4457-AB37-0940F0467366}
-		{1DF6A415-DA12-4187-AD2B-CD94C86585A6} = {FDF64D23-0E2B-4457-AB37-0940F0467366}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{3B9E9EDC-424C-4EDB-9606-1B33DD84B3A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -44,5 +42,14 @@ Global
 		{1DF6A415-DA12-4187-AD2B-CD94C86585A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1DF6A415-DA12-4187-AD2B-CD94C86585A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1DF6A415-DA12-4187-AD2B-CD94C86585A6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3B9E9EDC-424C-4EDB-9606-1B33DD84B3A8} = {FDF64D23-0E2B-4457-AB37-0940F0467366}
+		{1B9579F3-19FD-4C7B-B0B6-839A345750B0} = {FDF64D23-0E2B-4457-AB37-0940F0467366}
+		{747F9F37-4A90-4032-84E3-4B53DAB914B3} = {FDF64D23-0E2B-4457-AB37-0940F0467366}
+		{1DF6A415-DA12-4187-AD2B-CD94C86585A6} = {FDF64D23-0E2B-4457-AB37-0940F0467366}
 	EndGlobalSection
 EndGlobal

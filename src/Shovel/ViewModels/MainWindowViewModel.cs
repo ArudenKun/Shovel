@@ -16,9 +16,6 @@ public sealed partial class MainWindowViewModel : ViewModelBase
     [ObservableProperty]
     private NavigationViewItem _selectedPage = null!;
 
-    [ObservableProperty]
-    private Type _selectedPageType = null!;
-
     public MainWindowViewModel(
         IDialogService dialogService,
         UpdateManager updateManager,
@@ -50,14 +47,14 @@ public sealed partial class MainWindowViewModel : ViewModelBase
             new NavigationViewItem
             {
                 Content = "Environment",
-                IconSource = new SymbolIconSource { Symbol = Symbol.DrinkCoffee },
-                Tag = typeof(LunarCoreViewModel)
+                IconSource = new SymbolIconSource { Symbol = Symbol.Book },
+                Tag = typeof(EnvironmentViewModel)
             },
             new NavigationViewItem
             {
                 Content = "Proxy",
-                IconSource = new SymbolIconSource { Symbol = Symbol.DrinkCoffee },
-                Tag = typeof(LunarCoreViewModel)
+                IconSource = new SymbolIconSource { Symbol = Symbol.Certificate },
+                Tag = typeof(ProxyViewModel)
             }
         ];
 
@@ -101,7 +98,5 @@ public sealed partial class MainWindowViewModel : ViewModelBase
 
         var newIcon = (SymbolIconSource)newValue.IconSource;
         newIcon.IsFilled = true;
-
-        SelectedPageType = (Type)newValue.Tag!;
     }
 }
