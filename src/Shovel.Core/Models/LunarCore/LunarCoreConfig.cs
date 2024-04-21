@@ -1,9 +1,14 @@
 using System.Text.Json.Serialization;
+using Cogwheel;
+using Shovel.Core.Helpers;
 
 namespace Shovel.Core.Models.LunarCore;
 
-public class LunarCoreConfig
+public class LunarCoreConfig : SettingsBase
 {
+    public LunarCoreConfig()
+        : base(EnvironmentHelper.GetApplicationDataPath("server", "config.json")) { }
+
     [JsonPropertyName("accountDatabase")]
     public AccountDatabase AccountDatabase { get; set; }
 

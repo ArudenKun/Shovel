@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
+using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using FluentAvalonia.UI.Controls;
 using HanumanInstitute.MvvmDialogs;
@@ -27,10 +27,10 @@ public sealed partial class MainWindowViewModel : ViewModelBase
 
         NavigationPageFactory = navigationPageFactory;
 
-        SelectedPage = Menus.First();
+        SelectedPage = Menus[0];
     }
 
-    public IEnumerable<NavigationViewItem> Menus { get; } =
+    public IReadOnlyList<NavigationViewItem> Menus { get; } =
         [
             new NavigationViewItem
             {
@@ -58,7 +58,7 @@ public sealed partial class MainWindowViewModel : ViewModelBase
             }
         ];
 
-    public IEnumerable<NavigationViewItem> Footers { get; } =
+    public IReadOnlyList<NavigationViewItem> Footers { get; } =
         [
             new NavigationViewItem
             {
@@ -70,21 +70,29 @@ public sealed partial class MainWindowViewModel : ViewModelBase
 
     public INavigationPageFactory NavigationPageFactory { get; }
 
-    protected override async void HandleLoaded()
+    protected override async Task HandleLoadedAsync()
     {
-        if (!_updateManager.IsInstalled)
-        {
-            return;
-        }
+        //if (!_updateManager.IsInstalled)
+        //{
+        //    return;
+        //}
 
-        var newVersion = await _updateManager.CheckForUpdatesAsync();
-        if (newVersion is not null)
+
+        try
         {
-            await DialogService.ShowMessageBoxAsync(
-                this,
-                $"{newVersion.TargetFullRelease.Version.ToFullString()} is available",
-                "Update"
-            );
+            var newVersion = await _updateManager.CheckForUpdatesAsync();
+            if (newVersion is not null)
+            {
+                await DialogService.ShowMessageBoxAsync(
+                    this,
+                    $"{newVersion.TargetFullRelease.Version.ToFullString()} is available",
+                    "Update"
+                );
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
         }
     }
 

@@ -6,7 +6,7 @@ using Shovel.SourceGenerators.Utilities;
 
 namespace Shovel.SourceGenerators.Generators;
 
-[Generator]
+//[Generator]
 internal sealed class ViewActivationGenerator : IIncrementalGenerator
 {
     public void Initialize(IncrementalGeneratorInitializationContext context)
@@ -43,6 +43,8 @@ internal sealed class ViewActivationGenerator : IIncrementalGenerator
             source.Line();
             source.Line("using Avalonia.Controls;");
             source.Line("using Avalonia.Interactivity;");
+            source.Line("using CommunityToolkit.Mvvm.ComponentModel;");
+            source.Line("using CommunityToolkit.Mvvm.DependencyInjection;");
             source.Line("using HanumanInstitute.MvvmDialogs;");
             source.Line();
 

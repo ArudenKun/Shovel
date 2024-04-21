@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
 using HanumanInstitute.MvvmDialogs;
@@ -26,16 +27,30 @@ public abstract partial class ViewModelBase : ObservableValidator, IViewLoaded, 
     public void OnLoaded()
     {
         Messenger.RegisterAll(this);
+
         HandleLoaded();
+        _ = HandleLoadedAsync().ConfigureAwait(false);
     }
 
     protected virtual void HandleLoaded() { }
 
+    protected virtual Task HandleLoadedAsync()
+    {
+        return Task.CompletedTask;
+    }
+
     public void OnClosed()
     {
         Messenger.UnregisterAll(this);
+
         HandleClosed();
+        _ = HandleClosedAsync().ConfigureAwait(false);
     }
 
     protected virtual void HandleClosed() { }
+
+    protected virtual Task HandleClosedAsync()
+    {
+        return Task.CompletedTask;
+    }
 }
