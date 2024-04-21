@@ -5,8 +5,8 @@ namespace Shovel.Core.Models.LunarCore;
 public class ServerTime
 {
     [JsonPropertyName("spoofTime")]
-    public bool SpoofTime { get; set; }
+    public bool SpoofTime { get; set; } = false;
 
     [JsonPropertyName("spoofDate")]
-    public string SpoofDate { get; set; }
+    public DateTime SpoofDate { get; set; } = DateTime.Parse("15-01-2024 08:00:00");
 }

@@ -1,9 +1,8 @@
-using Shovel.ViewModels.Pages;
-using Shovel.Views.Abstractions;
+using Avalonia.Controls;
 
 namespace Shovel.Views.Pages;
 
-public partial class ProxyView : UserControlBase<ProxyViewModel>
+public partial class ProxyView : UserControl
 {
     public ProxyView()
     {

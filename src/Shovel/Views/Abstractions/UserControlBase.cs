@@ -1,13 +1,13 @@
-﻿using Avalonia.Controls;
+﻿using System.ComponentModel;
+using Avalonia.Controls;
 using Avalonia.Interactivity;
-using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.DependencyInjection;
 using HanumanInstitute.MvvmDialogs;
 
 namespace Shovel.Views.Abstractions;
 
 public abstract class UserControlBase<TViewModel> : UserControl
-    where TViewModel : ObservableObject
+    where TViewModel : class, INotifyPropertyChanged
 {
     public TViewModel ViewModel { get; }
 

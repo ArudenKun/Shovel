@@ -1,9 +1,8 @@
-using Shovel.ViewModels.Pages;
-using Shovel.Views.Abstractions;
+using Avalonia.Controls;
 
 namespace Shovel.Views.Pages;
 
-public partial class LauncherView : UserControlBase<LauncherViewModel>
+public partial class LauncherView : UserControl
 {
     public LauncherView()
     {

@@ -5,17 +5,17 @@ namespace Shovel.Core.Models.LunarCore;
 public class ServerRates
 {
     [JsonPropertyName("exp")]
-    public double Exp { get; set; }
+    public double Exp { get; set; } = 1.0;
 
     [JsonPropertyName("credit")]
-    public double Credit { get; set; }
+    public double Credit { get; set; } = 1.0;
 
     [JsonPropertyName("jade")]
-    public double Jade { get; set; }
+    public double Jade { get; set; } = 1.0;
 
     [JsonPropertyName("material")]
-    public double Material { get; set; }
+    public double Material { get; set; } = 1.0;
 
     [JsonPropertyName("equip")]
-    public double Equip { get; set; }
+    public double Equip { get; set; } = 1.0;
 }

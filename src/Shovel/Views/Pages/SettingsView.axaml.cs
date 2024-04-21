@@ -1,9 +1,8 @@
-using Shovel.ViewModels.Pages;
-using Shovel.Views.Abstractions;
+using Avalonia.Controls;
 
 namespace Shovel.Views.Pages;
 
-public sealed partial class SettingsView : UserControlBase<SettingsViewModel>
+public sealed partial class SettingsView : UserControl
 {
     public SettingsView()
     {

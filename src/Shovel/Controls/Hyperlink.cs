@@ -1,4 +1,5 @@
-﻿using Avalonia.Controls;
+﻿using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Logging;
 using DependencyPropertyGenerator;
 using Shovel.Core.Helpers;
@@ -12,12 +13,23 @@ public partial class Hyperlink : Button
     {
         Classes.Add("hyperlink");
     }
-    
+
+    protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
+    {
+        base.OnPropertyChanged(change);
+
+        if (change.Property == NavigateUriProperty)
+        {
+            Content ??= NavigateUri?.ToString();
+        }
+    }
+
     protected override void OnClick()
     {
         base.OnClick();
 
-        if (NavigateUri is null) return;
+        if (NavigateUri is null)
+            return;
 
         try
         {

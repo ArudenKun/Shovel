@@ -1,12 +1,12 @@
 ﻿<Styles xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <StyleInclude Source="Controls/Hyperlink.axaml" />
-    <StyleInclude Source="Controls/BusyArea.axaml" />
-    <StyleInclude Source="Controls/Loading.axaml" />
-    <StyleInclude Source="Controls/CircleProgressBar.axaml" />
+    <StyleInclude Source="avares://Shovel/Styles/Controls/Hyperlink.axaml" />
+    <StyleInclude Source="avares://Shovel/Styles/Controls/BusyArea.axaml" />
+    <StyleInclude Source="avares://Shovel/Styles/Controls/Loading.axaml" />
+    <StyleInclude Source="avares://Shovel/Styles/Controls/CircleProgressBar.axaml" />
     <Styles.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceInclude Source="Controls/Stepper.axaml" />
+                <ResourceInclude Source="avares://Shovel/Styles/Controls/Stepper.axaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Styles.Resources>

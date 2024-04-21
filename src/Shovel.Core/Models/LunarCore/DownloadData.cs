@@ -5,14 +5,14 @@ namespace Shovel.Core.Models.LunarCore;
 public class DownloadData
 {
     [JsonPropertyName("assetBundleUrl")]
-    public object AssetBundleUrl { get; set; }
+    public string? AssetBundleUrl { get; set; }
 
     [JsonPropertyName("exResourceUrl")]
-    public object ExResourceUrl { get; set; }
+    public string? ExResourceUrl { get; set; }
 
     [JsonPropertyName("luaUrl")]
-    public object LuaUrl { get; set; }
+    public string? LuaUrl { get; set; }
 
     [JsonPropertyName("ifixUrl")]
-    public object IfixUrl { get; set; }
+    public string? IfixUrl { get; set; }
 }

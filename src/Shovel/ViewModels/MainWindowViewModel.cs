@@ -3,15 +3,19 @@ using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using FluentAvalonia.UI.Controls;
 using HanumanInstitute.MvvmDialogs;
+using Microsoft.Extensions.Logging;
+using Shovel.SourceGenerators.Attributes;
 using Shovel.ViewModels.Abstractions;
 using Shovel.ViewModels.Pages;
 using Velopack;
 
 namespace Shovel.ViewModels;
 
+[Singleton]
 public sealed partial class MainWindowViewModel : ViewModelBase
 {
     private readonly UpdateManager _updateManager;
+    private readonly ILogger<MainWindowViewModel> _logger;
 
     [ObservableProperty]
     private NavigationViewItem _selectedPage = null!;
@@ -19,7 +23,8 @@ public sealed partial class MainWindowViewModel : ViewModelBase
     public MainWindowViewModel(
         IDialogService dialogService,
         UpdateManager updateManager,
-        INavigationPageFactory navigationPageFactory
+        INavigationPageFactory navigationPageFactory,
+        ILogger<MainWindowViewModel> logger
     )
         : base(dialogService)
     {
@@ -28,6 +33,7 @@ public sealed partial class MainWindowViewModel : ViewModelBase
         NavigationPageFactory = navigationPageFactory;
 
         SelectedPage = Menus[0];
+        _logger = logger;
     }
 
     public IReadOnlyList<NavigationViewItem> Menus { get; } =
@@ -72,12 +78,6 @@ public sealed partial class MainWindowViewModel : ViewModelBase
 
     protected override async Task HandleLoadedAsync()
     {
-        //if (!_updateManager.IsInstalled)
-        //{
-        //    return;
-        //}
-
-
         try
         {
             var newVersion = await _updateManager.CheckForUpdatesAsync();
@@ -92,7 +92,7 @@ public sealed partial class MainWindowViewModel : ViewModelBase
         }
         catch (Exception e)
         {
-            Console.WriteLine(e);
+            _logger.LogWarning(e, "Update error");
         }
     }
 

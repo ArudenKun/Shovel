@@ -3,11 +3,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="using:Shovel.Controls">
     <Style Selector="controls|Hyperlink.hyperlink">
-        <Setter Property="Foreground" Value="{DynamicResource TextOnAccentFillColorPrimaryBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource AccentTextFillColorPrimaryBrush}" />
     </Style>
     <Style Selector="controls|Hyperlink.hyperlink:pointerover">
         <Setter Property="Cursor" Value="Hand" />
-        <Setter Property="Foreground" Value="{DynamicResource TextOnAccentFillColorPrimaryBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource AccentTextFillColorSecondaryBrush}" />
     </Style>
 
     <Style Selector="controls|Hyperlink.hyperlink:pointerover &gt; TextBlock">

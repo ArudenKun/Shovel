@@ -2,10 +2,59 @@
     x:Class="Shovel.Views.Pages.SettingsView"
     xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:Shovel.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:helpers="using:Shovel.Core.Helpers"
+    xmlns:ic="using:FluentIcons.Avalonia.Fluent"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="using:FluentAvalonia.UI.Controls"
+    xmlns:vmp="using:Shovel.ViewModels.Pages"
     d:DesignHeight="450"
     d:DesignWidth="800"
+    x:DataType="vmp:SettingsViewModel"
     mc:Ignorable="d">
-    Welcome to Settinsg!
+    <ScrollViewer>
+        <StackPanel Spacing="8">
+            <ui:SettingsExpander Description="Change current theme" Header="Theme">
+                <ui:SettingsExpander.IconSource>
+                    <ic:SymbolIconSource Symbol="DarkTheme" />
+                </ui:SettingsExpander.IconSource>
+                <ui:SettingsExpander.Footer>
+                    <ComboBox
+                        MinWidth="150"
+                        DisplayMemberBinding="{Binding DisplayName}"
+                        ItemsSource="{Binding Themes}"
+                        SelectedItem="{Binding CurrentTheme}" />
+                </ui:SettingsExpander.Footer>
+            </ui:SettingsExpander>
+            <ui:SettingsExpander Description="Auto check for updates" Header="Check for Updates">
+                <ui:SettingsExpander.IconSource>
+                    <ic:SymbolIconSource Symbol="Radar" />
+                </ui:SettingsExpander.IconSource>
+                <ui:SettingsExpander.Footer>
+                    <ToggleSwitch />
+                </ui:SettingsExpander.Footer>
+            </ui:SettingsExpander>
+            <ui:SettingsExpander Header="About">
+                <ui:SettingsExpander.IconSource>
+                    <ic:SymbolIconSource Symbol="Info" />
+                </ui:SettingsExpander.IconSource>
+                <ui:SettingsExpanderItem>
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Version:" />
+                            <Label Content="{x:Static helpers:EnvironmentHelper.AppVersion}" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Github:" />
+                            <controls:Hyperlink
+                                HorizontalContentAlignment="Center"
+                                VerticalContentAlignment="Center"
+                                NavigateUri="https://github.com/ArudenKun/Shovel" />
+                        </StackPanel>
+                    </StackPanel>
+                </ui:SettingsExpanderItem>
+            </ui:SettingsExpander>
+        </StackPanel>
+    </ScrollViewer>
 </UserControl>

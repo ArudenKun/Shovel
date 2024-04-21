@@ -47,7 +47,7 @@ jobs:
       - name: Get Version
         id: get-version
         shell: bash
-        run: echo "version=$(grep -oE '<Version>[^<]+' Shovel/Shovel.csproj | sed 's/<Version>//')-dev.${{ github.run_number }}" >> $GITHUB_OUTPUT
+        run: echo "version=$(grep -oE '<Version>[^<]+' src/Shovel/Shovel.csproj | sed 's/<Version>//')-dev.${{ github.run_number }}" >> $GITHUB_OUTPUT
 
       - name: Check Cache
         id: check-cache
@@ -78,7 +78,7 @@ jobs:
         run: dotnet restore --locked-mode
 
       - name: Publish
-        run: dotnet publish Shovel/Shovel.csproj -c Release -o publish -p:Version=${{ steps.get-version.outputs.version }}
+        run: dotnet publish src/Shovel/Shovel.csproj -c Release -o publish -p:Version=${{ steps.get-version.outputs.version }}
 
       - name: Pack Release
         shell: bash
@@ -88,7 +88,7 @@ jobs:
           -v ${{ steps.get-version.outputs.version }} 
           -p publish 
           -c ${{ matrix.channel }} 
-          ${{ matrix.target-platform == 'linux' && '-i Shovel/Assets/shovel.png' || '' }}
+          ${{ matrix.target-platform == 'linux' && '-i src/Shovel/Assets/shovel.png' || '' }}
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4

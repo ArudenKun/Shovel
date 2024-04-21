@@ -1,6 +1,6 @@
 ﻿namespace Shovel.Core.Helpers;
 
-public static class FileHelper
+public static class IOHelper
 {
     public static void EnsureDirectoryExists(string path)
     {
@@ -8,6 +8,23 @@ public static class FileHelper
         {
             Directory.CreateDirectory(Path.GetDirectoryName(path)!);
         }
+    }
+
+    public static void DeleteDirectory(string dirPath)
+    {
+        foreach (var folder in Directory.GetDirectories(dirPath))
+        {
+            DeleteDirectory(folder);
+        }
+
+        foreach (string file in Directory.GetFiles(dirPath))
+        {
+            var pPath = Path.Combine(dirPath, file);
+            File.SetAttributes(pPath, FileAttributes.Normal);
+            File.Delete(file);
+        }
+
+        Directory.Delete(dirPath);
     }
 
     public static string SanitizeFileName(string fileName, char replacementChar = '_')
